@@ -1,0 +1,48 @@
+{
+    "name": "cabaoctavio/laravel-query-log",
+    "description": "Eloquent model trait that logs the SQL query built so far, at any point of the builder chain.",
+    "keywords": ["laravel", "eloquent", "query", "log", "debug", "sql"],
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Octavio Caba",
+            "email": "cabaoctavio96@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/database": "^10.15|^11.0|^12.0|^13.0",
+        "illuminate/log": "^10.15|^11.0|^12.0|^13.0",
+        "illuminate/support": "^10.15|^11.0|^12.0|^13.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0|^10.0|^11.0",
+        "phpunit/phpunit": "^10.0|^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cabaoctavio\\QueryLog\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cabaoctavio\\QueryLog\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cabaoctavio\\QueryLog\\QueryLogServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
