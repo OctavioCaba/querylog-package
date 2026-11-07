@@ -11,8 +11,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { php: '8.1', laravel: '10.*', testbench: '8.*' }
-          - { php: '8.2', laravel: '11.*', testbench: '9.*' }
+          - { php: '8.1', laravel: '10.*', testbench: '8.*', eol: true }
+          - { php: '8.2', laravel: '11.*', testbench: '9.*', eol: true }
           - { php: '8.3', laravel: '12.*', testbench: '10.*' }
           - { php: '8.4', laravel: '12.*', testbench: '10.*' }
 
@@ -26,6 +26,13 @@ jobs:
           php: ${{ matrix.php }}
           extensions: pdo_sqlite
           coverage: none
+
+      # Laravel 10/11 are EOL and every release has security advisories;
+      # Composer 2.9+ refuses to install them unless blocking is disabled.
+      # Only affects this CI test environment, not package consumers.
+      - name: Allow EOL Laravel versions with advisories
+        if: ${{ matrix.eol }}
+        run: composer config policy.advisories.block false
 
       - name: Install dependencies
         run: |
